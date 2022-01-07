@@ -1,4 +1,4 @@
-\#
+#
 # ~/.bashrc
 #
 
@@ -20,7 +20,7 @@ _set_my_PS1() {
 }
 _set_my_PS1
 unset -f _set_my_PS1
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME' 
+
 ShowInstallerIsoInfo() {
     local file=/usr/lib/endeavouros-release
     if [ -r $file ] ; then
@@ -31,10 +31,10 @@ ShowInstallerIsoInfo() {
 }
 
 
-alias ls='exa --long --header --git'
+alias ls='ls --color=auto'
 alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
-alias bashreload='source ~/.bashrc'
+
 [[ "$(whoami)" = "root" ]] && return
 
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
@@ -144,19 +144,37 @@ _open_files_for_editing() {
     # Note2: uses mime bindings, so you may need to use
     #        e.g. a file manager to make some file bindings.
 
-    local progs="xdg-open exo-open"     # One of these programs is used.
-    local prog
-    for prog in $progs ; do
-        if [ -x /usr/bin/$xx ] ; then
-            $prog "$@" >& /dev/null &
-            return
-        fi
-    done
+    if [ -x /usr/bin/exo-open ] ; then
+        echo "exo-open $*" >&2
+        /usr/bin/exo-open "$@" >& /dev/null &
+        return
+    fi
+    if [ -x /usr/bin/xdg-open ] ; then
+        for file in "$@" ; do
+            echo "xdg-open $file" >&2
+            /usr/bin/xdg-open "$file" >& /dev/null &
+        done
+        return
+    fi
+
     echo "Sorry, none of programs [$progs] is found." >&2
     echo "Tip: install one of packages" >&2
     for prog in $progs ; do
         echo "    $(pacman -Qqo "$prog")" >&2
     done
+}
+
+_Pacdiff() {
+    local differ pacdiff=/usr/bin/pacdiff
+
+    if [ -n "$(echo q | DIFFPROG=diff $pacdiff)" ] ; then
+        for differ in kdiff3 meld diffuse ; do
+            if [ -x /usr/bin/$differ ] ; then
+                DIFFPROG=$differ su-c_wrapper $pacdiff
+                break
+            fi
+        done
+    fi
 }
 
 #------------------------------------------------------------
@@ -166,4 +184,6 @@ _open_files_for_editing() {
 ##
 
 # alias ef='_open_files_for_editing'     # 'ef' opens given file(s) for editing
+# alias pacdiff=_Pacdiff
 ################################################################################
+alias config='/usr/bin/git --git-dir=/home/rylee/.cfg/ --work-tree=/home/rylee'
