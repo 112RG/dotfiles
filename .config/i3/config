@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id picom --no-fading-openclose -b
 
 exec --no-startup-id i3-msg "workspace 1, move workspace to output HDMI-0"
 exec --no-startup-id i3-msg "workspace 2, move workspace to output DP-2"
@@ -116,7 +117,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy-rapid 5 3
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -132,8 +133,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy & sleep 5 && xset dpms force off
-bindsym $mod+Shift+U exec --no-startup-id i3lock-fancy & sleep 6 && systemctl suspend
+bindsym $mod+Shift+y exec --no-startup-id sleep 1 && xset dpms force off
+#bindsym $mod+Shift+U exec --no-startup-id i3lock-fancy-rapid 5 3 & sleep 1 && systemctl suspend
+bindsym $mod+Shift+U exec --no-startup-id sleep 1 && systemctl suspend
 # start a terminal
 bindsym $mod+Return exec WINIT_X11_SCALE_FACTOR=1.2 alacritty
 
