@@ -7,5 +7,5 @@ set fish_color_error '#ff6c6b'
 set fish_color_param brcyan
 alias ls='exa --long --header --git'
 alias cat='bat'
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias e='jpico -linums'
