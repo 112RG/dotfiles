@@ -37,7 +37,7 @@ scroll-down = i3wm-wsprev
 
 background = ${color.bground}
 foreground = ${color.fground}
-line-color = ${bar/top.background}
+#line-color = ${bar/top.background}
 line-size = 2
 
 spacing = 3
@@ -64,9 +64,9 @@ interval = 1
 format = <label>
 format-padding = 1
 format-prefix = %{T4}%{T-}
-format-prefix-foreground = ${colors.fg}
+format-prefix-foreground = ${color.fground}
 label = %{T1}%percentage:2%%%{T-}
-label-foreground = ${colors.fg}
+label-foreground = ${color.fground}
 label-padding = 1
 
 
@@ -81,7 +81,7 @@ type = internal/memory
 interval = 1
 
 format = <label>
-format-foreground = ${colors.fg}
+format-foreground = ${color.fground}
 format-padding = 1
 format-prefix = %{T4}%{T-}
 label = %{T1}%percentage_used%%%{T-}
@@ -176,17 +176,17 @@ interval = 5
 format-volume = <label-volume>
 format-volume-padding = 1
 format-volume-prefix = %{T4}%{T-}
-format-volume-prefix-foreground = ${colors.fg}
+format-volume-prefix-foreground = ${color.fground}
 label-volume = %{T1}%percentage%%%{T-}
-label-volume-foreground = ${colors.fg}
+label-volume-foreground = ${color.fground}
 label-volume-padding = 1
 
 format-muted = <label-muted>
 format-muted-padding = 1
 format-muted-prefix = %{T4}%{T-}
-format-muted-prefix-foreground = ${colors.fg-alt}
+format-muted-prefix-foreground = ${color.fground}
 label-muted = %{T1}%percentage%%%{T-}
-label-muted-foreground = ${colors.fg-alt}
+label-muted-foreground = ${color.fground}
 label-muted-padding = 1
 
 click-right = pavucontrol&
