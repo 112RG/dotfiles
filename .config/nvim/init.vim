@@ -21,6 +21,7 @@ Plug 'j-hui/fidget.nvim'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'm-demare/hlargs.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'weilbith/nvim-code-action-menu'
@@ -29,15 +30,14 @@ Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
-
 syntax enable                     " Enable syntax highlighting
-
-
 colorscheme moonfly
 set termguicolors
-
 set smartindent
-
+set number                        " Don't show line numbers
+set numberwidth=3                 " The width of the number column
+set visualbell                    " Disable annoying beep
+set wildmenu   
 lua require("fidget").setup()
 autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
 
@@ -71,6 +71,11 @@ local opts = {
   -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
   -- https://rust-analyzer.github.io/manual.html#features
   server = {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     settings = {
       ["rust-analyzer"] = {
         assist = {
@@ -78,8 +83,10 @@ local opts = {
           importPrefix = "crate"
           },
         cargo = {
-          allFeatures = true
-          },
+          allFeatures = true,
+          autoreload = true,
+	  runBuildScripts = true,
+	  },
         checkOnSave = {
           -- default: `cargo check`
           command = "clippy"
@@ -117,7 +124,6 @@ nnoremap <silent> gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 " nnoremap <silent> ga        <cmd>lua vim.lsp.buf.code_action()<CR>
 "
 nnoremap <silent> ga        <cmd>CodeActionMenu<CR>
-
 nnoremap <silent> [x        <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]x        <cmd>lua vim.diagnostic.goto_next()<CR>
 nnoremap <silent> ]s        <cmd>lua vim.diagnostic.show()<CR>
@@ -216,5 +222,7 @@ nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
 nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
 " Close buffer
 nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
-" Wipeout buffer
-"                          :BufferWipeo
+
+let g:rustfmt_command = "rustfmt"
+" let g:rustfmt_command = "rustfmt --edition 2021"
+let g:rustfmt_autosave = 1
