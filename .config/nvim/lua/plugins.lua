@@ -57,8 +57,14 @@ return require('packer').startup(function()
     use { "catppuccin/nvim", as = "catppuccin" }
     use "EdenEast/nightfox.nvim" 
     use 'folke/tokyonight.nvim'
+    use 'luochen1990/rainbow'
+    use 'nvim-treesitter/playground'
     use 'joshdick/onedark.vim'
     use {'dracula/vim', as = "dracula"}
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     --[[ use 'nvim-lualine/lualine.nvim' ]]
     use 'bluz71/vim-mistfly-statusline'
     use {

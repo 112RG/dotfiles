@@ -1,5 +1,5 @@
 syntax enable                     " Enable syntax highlighting
-colorscheme moonfly
+colorscheme jellybeans
 set termguicolors
 set smartindent
 set number                        " Don't show line numbers
