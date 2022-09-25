@@ -8,105 +8,23 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id picom --no-fading-openclose -b
-
-exec --no-startup-id i3-msg "workspace 1, move workspace to output HDMI-0"
-exec --no-startup-id i3-msg "workspace 2, move workspace to output DP-2"
-exec --no-startup-id i3-msg "workspace 3, move workspace to output DP-0"
 
 set $mod Mod4
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
 
-#client.focused          # #2b2b2b #e7e7e7 #e7e7e7   #e7e7e7
-#client.focused_inactive #e7e7e7 #2b2b2b #e7e7e7 #44475A   #44475A
-#client.unfocused        #e7e7e7 #2b2b2b #e7e7e7 #282A36   #282A36
-#client.urgent           #e7e7e7 #2b2b2b #e7e7e7 #FF5555   #FF5555
-#client.placeholder      #e7e7e7 #2b2b2b #e7e7e7 #282A36   #282A36
-
-#client.background       #2b2b2b
-
-
-#set_from_resource	$background	#272827
-#set_from_resource	$foreground	#657b83
-#set_from_resource	$color0		#313131
-#set_from_resource 	$color1 	#7e6565
-#set_from_resource 	$color2 	#85aab6
-#set_from_resource 	$color3 	#90a996
-#set_from_resource 	$color4 	#3e646f
-#set_from_resource 	$color5 	#817f98
-#set_from_resource 	$color6		#9aa7c0
-#set_from_resource	$color7		#b0aba8
-#set_from_resource	$color8		#434343
-#set_from_resource	$color9		#807171
-#set_from_resource	$color10	#3e646f
-#set_from_resource	$color11	#badbc2
-#set_from_resource	$color12	#5c828d
-#set_from_resource	$color13	#9b98b7
-#set_from_resource	$color14	#b2b7c0
-#set_from_resource	$color15	#d9d6ca
-
-
-
-
-client.background	#272827
-
-client.focused         	#657b83 	#272827	        #657b83         #3e646f		#3e646f	
-client.unfocused       	#657b83 	#272827	        #657b83         #272827	        #272827
-client.focused_inactive	#657b83 	#272827	        #657b83         #272827	        #272827
-client.urgent		#657b83 	#272827	        #657b83         #272827	        #272827
-client.placeholder	#657b83 	#272827	        #657b83         #272827	        #272827
-
-
-# Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
-new_float pixel 1
-
-# Hide borders
-hide_edge_borders none
-
-# change borders
-bindsym $mod+u border pixel 1
-bindsym $mod+y border pixel 1
-bindsym $mod+n border pixel 1
-
-# set gaps
-gaps inner 8
-gaps outer -4
-for_window [class="^.*"] border pixel 2
-
-
-
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:DejaVu Sans Mono 0
-
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 8
 
 
-for_window [title="Bitwarden"] floating enable
+# Set gaps
 
-
-# https://github.com/ValveSoftware/steam-for-linux/issues/1040
-for_window [class="^Steam$" title="^Friends$"] floating enable
-for_window [class="^Steam$" title="Steam - News"] floating enable
-for_window [class="^Steam$" title=".* - Chat"] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"] floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
-
-
-assign [class="discord"] 4
+gaps inner 8 
+gaps outer -4
+for_window [class="^.*"] border pixel 2
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -117,38 +35,43 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy-rapid 5 3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+exec picom -b --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffness 350 --vsync
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id nitrogen --restore
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-#exec --no-startup-id nm-applet
-
-
-# Screenshot
-
-bindsym $mod+Print exec imgur-screenshot
-
+exec --no-startup-id nm-applet
+exec --no-startup-id pactl set-sink volume 
 # Use pactl to adjust volume in PulseAudio.
-#set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+set $refresh_i3status killall -SIGUSR1 i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%-
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Shift+y exec --no-startup-id sleep 1 && xset dpms force off
-#bindsym $mod+Shift+U exec --no-startup-id i3lock-fancy-rapid 5 3 & sleep 1 && systemctl suspend
-bindsym $mod+Shift+U exec --no-startup-id sleep 1 && systemctl suspend
 # start a terminal
-bindsym $mod+Return exec WINIT_X11_SCALE_FACTOR=1.2 alacritty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -278,10 +201,6 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#        status_command i3status
-#}
-
-
-
-
+bar {
+        status_command i3status
+}
