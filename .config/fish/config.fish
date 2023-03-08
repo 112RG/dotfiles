@@ -9,3 +9,5 @@ alias ls='exa --long --header --git'
 alias cat='bat'
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias e='jpico -linums'
+
+
