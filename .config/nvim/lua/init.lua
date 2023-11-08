@@ -13,10 +13,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require('general')
 require('plugins')
-require('settings')
 require('keys')
-
 require('plugins/cmp')
+require('settings')
 
 
 

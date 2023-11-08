@@ -3,8 +3,11 @@ local options = {
                         "http", "javascript", "json", "lua", "make", "markdown", "python", "regex", "rust", "toml",
                         "vim", "yaml", "zig"},  
     highlight = {
-      enable = true,
-      use_languagetree = true,
+      highlight = {
+        enable = true, -- false will disable the whole extension
+        disable = { },
+        additional_vim_regex_highlighting = false,
+    },
     },
   
     indent = { enable = true },
