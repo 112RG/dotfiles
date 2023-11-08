@@ -1,5 +1,5 @@
 -- ================== Aliases ========================
--- local g = vim.g
+local g = vim.g
 local o = vim.o
 local b = vim.bo
 local w = vim.wo
@@ -10,6 +10,7 @@ local cmd = vim.api.nvim_command
 cmd("syntax enable")
 cmd("filetype plugin indent on")
 -- ============== Basic   ==========================
+o.laststatus=2
 o.smartindent = true
 o.termguicolors = true -- Allows coloring support and themes colors
 o.compatible = false -- ompromising compatibilty
@@ -42,3 +43,15 @@ o.expandtab = true -- Converts tabs to spaces
 o.ttyfast = true -- fast scrolling
 o.pastetoggle = "<F2>"
 o.completeopt = 'menuone,noselect'
+o.cursorline = true
+g.loaded_matchparen = true
+g.loaded_matchbracket = true
+-- Setup linefly
+
+g.linefly_options = {
+    tabline = true,
+    winbar = true,
+    with_search_count = true,
+    with_spell_status = true,
+    with_indent_status = true,
+}

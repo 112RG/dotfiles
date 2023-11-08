@@ -10,6 +10,6 @@ local g = vim.g
 -- Auto starts Markdown buffer
 -- g.mkdp_auto_start = 1
 
-cmd("colorscheme base16-irblack")
+cmd("colorscheme kanagawa-dragon")
 g.moonflyNormalFloat = true
 g.moonflyCursorColor = true

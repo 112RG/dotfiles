@@ -28,6 +28,7 @@ return require('packer').startup(function()
     use 'MunifTanjim/nui.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'bluz71/vim-moonfly-colors'
+    use 'bluz71/nvim-linefly'
     use 'chriskempson/base16-vim'
     use 'romgrk/barbar.nvim'
     use 'hrsh7th/cmp-buffer'
@@ -38,9 +39,7 @@ return require('packer').startup(function()
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/vim-vsnip'
-    use 'nvim-neo-tree/neo-tree.nvim'
     use 'hrsh7th/vim-vsnip-integ'
-    use 'kosayoda/nvim-lightbulb'
     use 'm-demare/hlargs.nvim'
     use 'neovim/nvim-lspconfig'
     use 'rust-lang/rust.vim'
@@ -48,83 +47,35 @@ return require('packer').startup(function()
     use 'weilbith/nvim-code-action-menu'
     use 'williamboman/nvim-lsp-installer'
     use 'kyazdani42/nvim-web-devicons'
-    use "cpea2506/one_monokai.nvim"
     use "nanotech/jellybeans.vim"
-    use 'kyazdani42/nvim-tree.lua'
-    use 'marko-cerovac/material.nvim'
-    use 'sainnhe/sonokai'
     use 'rafamadriz/neon'
-    use { "catppuccin/nvim", as = "catppuccin" }
-    use "EdenEast/nightfox.nvim" 
-    use 'folke/tokyonight.nvim'
     use 'luochen1990/rainbow'
+    use {
+        'nvimdev/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+          require('dashboard').setup {
+            -- config
+          }
+        end,
+        requires = {'nvim-tree/nvim-web-devicons'}
+      }
     use 'nvim-treesitter/playground'
-    use 'joshdick/onedark.vim'
-    use {'dracula/vim', as = "dracula"}
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
-    --[[ use 'nvim-lualine/lualine.nvim' ]]
-    use 'bluz71/vim-mistfly-statusline'
+--[[     use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+        config = function() require("lualine").setup {} end
+    } ]]
     use {
         "nvim-lua/lsp-status.nvim",
         require = function()
             require("plugins.lsp-status")
         end
     }
-    use({"olimorris/onedarkpro.nvim", require("onedarkpro").setup {
-        theme = "onedark_dark",
-        colors = {
-            onedark_dark = {
-                bg = "#121212" -- yellow
-            }
-        },
-        hlgroups = { -- Overriding the Comment highlight group
-            Comment = {
-                fg = "#5c6370"
-            }, -- 1
-            DiagnosticError = {
-                bg = "#5c6370"
-            },
-            DiagnosticWarn = {
-                bg = "#5c6370"
-            },
-            DiagnosticInfo = {
-                bg = "#5c6370"
-            },
-            DiagnosticHint = {
-                bg = "#5c6370"
-            },
-
-            DiagnosticSignError = {
-                bg = "#5c6370"
-            },
-            DiagnosticSignWarn = {
-                bg = "#5c6370"
-            },
-            DiagnosticSignInfo = {
-                bg = "#5c6370"
-            },
-            DiagnosticSignHint = {
-                bg = "#5c6370"
-            },
-
-            DiagnosticVirtualTextError = {
-                bg = "#5c6370"
-            },
-            DiagnosticVirtualTextWarn = {
-                bg = "#5c6370"
-            },
-            DiagnosticVirtualTextInfo = {
-                bg = "#5c6370"
-            },
-            DiagnosticVirtualTextHint = {
-                bg = "#5c6370"
-            }
-
-        }
-    }})
     use {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.0',
@@ -132,8 +83,10 @@ return require('packer').startup(function()
     }
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        run = ':TSUpdate',
+        ignore_install = { "help" }
     }
+    use "rebelot/kanagawa.nvim"
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -145,7 +98,7 @@ return require('packer').startup(function()
             }
         end
     }
-    use {'j-hui/fidget.nvim'}
+    use {'j-hui/fidget.nvim', tag = 'legacy'}
 
 end)
 
