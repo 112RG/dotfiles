@@ -17,11 +17,15 @@ g.mapleader = "\\"
 
 -- ============== Lsp Server KeyBindings ===================
 
+map("n", "<leader>lf", "<cmd>:lua vim.lsp.buf.format()<cr>", {
+    noremap = true
+})
+
 -- ============== Telescope ===================
 
 map("n", "<leader>ff", "<cmd>:Telescope find_files<cr>", {
     noremap = true
-})
+}) 
 map("n", "<leader>fg", "<cmd>:Telescope live_grep<cr>", {
     noremap = true
 })

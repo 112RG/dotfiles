@@ -12,6 +12,8 @@ cmd("filetype plugin indent on")
 -- ============== Basic   ==========================
 o.laststatus=2
 o.smartindent = true
+o.smarttab = true
+
 o.termguicolors = true -- Allows coloring support and themes colors
 o.compatible = false -- ompromising compatibilty
 o.fileencoding = "utf-8" -- The encoding written to file
