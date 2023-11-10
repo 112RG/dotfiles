@@ -1,129 +1,3 @@
---[[ local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local packer = require 'packer'
-
-packer.startup {
-    function()
-
-    end,
-    config = {
-        display = {
-            open_fn = function()
-                return require('packer.util').float({
-                    border = 'single'
-                })
-            end
-        }
-    }
-}
--- packer.init {opt_default = false}
-
-local use = packer.use
-packer.reset()
-
-return require('packer').startup(function()
-    -- Packer can manage itself
-    use 'MunifTanjim/nui.nvim'
-    use 'wbthomason/packer.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'bluz71/vim-moonfly-colors'
-    use 'bluz71/nvim-linefly'
-    use 'chriskempson/base16-vim'
-    use 'romgrk/barbar.nvim'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'tamago324/nlsp-settings.nvim'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/vim-vsnip-integ'
-    use 'm-demare/hlargs.nvim'
-    use 'neovim/nvim-lspconfig'
-    use 'rust-lang/rust.vim'
-    use 'simrat39/rust-tools.nvim'
-    use 'weilbith/nvim-code-action-menu'
-    use 'williamboman/nvim-lsp-installer'
-    use 'kyazdani42/nvim-web-devicons'
-    use "nanotech/jellybeans.vim"
-    use 'rafamadriz/neon'
-    use 'luochen1990/rainbow'
-    use {
-        'nvimdev/dashboard-nvim',
-        event = 'VimEnter',
-        config = function()
-          require('dashboard').setup {
-            -- config
-          }
-        end,
-        requires = {'nvim-tree/nvim-web-devicons'}
-      }
-    use 'nvim-treesitter/playground'
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    }
-     use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-        config = function() require("lualine").setup {} end
-    } 
-    use {
-        "nvim-lua/lsp-status.nvim",
-        require = function()
-            require("plugins.lsp-status")
-        end
-    }
-    use {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.0',
-        requires = {{'nvim-lua/plenary.nvim'}}
-    }
-    use {"lukas-reineke/indent-blankline.nvim", config = function()
-            require("ibl").setup {
-                indentLine_enabled = 'test',
-                filetype_exclude = {
-                  "help",
-                  "terminal",
-                  "lazy",
-                  "lspinfo",
-                  "TelescopePrompt",
-                  "TelescopeResults",
-                  "mason",
-                  "nvdash",
-                  "nvcheatsheet",
-                  "",
-                },
-                buftype_exclude = { "terminal" },
-                show_trailing_blankline_indent = false,
-                show_first_indent_level = false,
-                show_current_context = true,
-                show_current_context_start = true,
-              }
-        end
-    }
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        ignore_install = { "help" }
-    }
-    use "rebelot/kanagawa.nvim"
-    use {
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("trouble").setup {
-
-            }
-        end
-    }
-    use {'j-hui/fidget.nvim', tag = 'legacy'}
-
-end) ]]
-
-
 local lazy_config = require("plugins.lazy_nvim")
 local plugins = {
     {"rebelot/kanagawa.nvim", lazy = false,
@@ -164,7 +38,6 @@ local plugins = {
     {"tamago324/nlsp-settings.nvim"},
     {"hrsh7th/cmp-path"},
     {"hrsh7th/cmp-vsnip"},
-    {"hrsh7th/nvim-cmp"},
     {"hrsh7th/vim-vsnip"},
     {"hrsh7th/vim-vsnip-integ"},
     {"m-demare/hlargs.nvim"},
@@ -233,30 +106,81 @@ local plugins = {
     },
     {"simrat39/rust-tools.nvim"},
     {
-        "williamboman/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
---[[         opts = function()
-          return require "plugins.configs.mason"
-        end, ]]
-        config = function(_, opts)
-          require("mason").setup {
-            ensure_installed = { "lua_ls", "rust_analyzer" }
-          }
-        end,
-    },
-    {"williamboman/mason-lspconfig", lazy = false, config = function(_, opts)
-        require("mason-lspconfig").setup {}
-      end,},
-    {
-      "neovim/nvim-lspconfig",
-      init = function()
-        require("utils").lazy_load "nvim-lspconfig"
-      end,
-      config = function()
-        require "plugins.lspconfig"
-      end, 
-    },
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    lazy = true,
+    config = false,
+    init = function()
+      -- Disable automatic setup, we are doing it manually
+      vim.g.lsp_zero_extend_cmp = 0
+      vim.g.lsp_zero_extend_lspconfig = 0
+    end,
+  },
+  {
+    'williamboman/mason.nvim',
+    lazy = false,
+    config = true,
+  },
 
+  -- Autocompletion
+  {
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    dependencies = {
+      {'L3MON4D3/LuaSnip'},
+    },
+    config = function()
+      -- Here is where you configure the autocompletion settings.
+      local lsp_zero = require('lsp-zero')
+      lsp_zero.extend_cmp()
+
+      -- And you can configure cmp even more, if you want to.
+      local cmp = require('cmp')
+      local cmp_action = lsp_zero.cmp_action()
+
+      cmp.setup({
+        formatting = lsp_zero.cmp_format(),
+        mapping = cmp.mapping.preset.insert({
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+          ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+        })
+      })
+    end
+  },
+
+  -- LSP
+  {
+    'neovim/nvim-lspconfig',
+    cmd = {'LspInfo', 'LspInstall', 'LspStart'},
+    event = {'BufReadPre', 'BufNewFile'},
+    dependencies = {
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'williamboman/mason-lspconfig.nvim'},
+    },
+    config = function()
+      -- This is where all the LSP shenanigans will live
+       local lsp_zero = require('lsp-zero')
+       lsp_zero.extend_lspconfig()
+       lsp_zero.on_attach(function(client, bufnr)
+         lsp_zero.default_keymaps({buffer = bufnr})
+       end)
+
+      require('mason-lspconfig').setup({
+        ensure_installed = {},
+        handlers = {
+          lsp_zero.default_setup,
+          lua_ls = function()
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
+          end,
+        }
+      })
+     require "plugins.lspconfig"
+    end
+  }
 }
 
 require("lazy").setup(plugins, lazy_config)

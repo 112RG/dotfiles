@@ -1,5 +1,7 @@
 local lspconfig = require('lspconfig')
 
+local lsp_zero = require('lsp-zero')
+
 lspconfig.rust_analyzer.setup {}
 lspconfig.clangd.setup {}
 lspconfig.zls.setup {}

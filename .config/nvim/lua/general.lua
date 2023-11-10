@@ -13,7 +13,9 @@ cmd("filetype plugin indent on")
 o.laststatus=2
 o.smartindent = true
 o.smarttab = true
-
+o.tabstop = 4
+o.shiftwidth = 4
+o.expandtab = true
 o.termguicolors = true -- Allows coloring support and themes colors
 o.compatible = false -- ompromising compatibilty
 o.fileencoding = "utf-8" -- The encoding written to file
