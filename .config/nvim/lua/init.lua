@@ -14,9 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 require('general')
 require('plugins')
 require('keys')
-require('plugins/cmp')
 require('settings')
-
+require('plugins.lspconfig')
 
 
 --[[ vim.api.nvim_command("highlight TSInclude cterm=NONE ctermbg=NONE gui=NONE guibg=NONE guifg=#FF6C60")

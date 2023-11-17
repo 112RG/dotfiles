@@ -28,4 +28,13 @@ M.lazy_load = function(plugin)
     })
   end
   
-  return M
+
+
+M.disable_lang = function(lang)
+  local buf_name = vim.fn.expand("%")
+  if lang == "rust" and string.find(buf_name, "rust%-") then
+    return true
+  end
+end
+
+return M
