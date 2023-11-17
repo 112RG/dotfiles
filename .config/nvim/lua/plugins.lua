@@ -44,7 +44,6 @@ local plugins = {
     {"rust-lang/rust.vim"},
     {"simrat39/rust-tools.nvim"},
     {"weilbith/nvim-code-action-menu"},
-    {"kyazdani42/nvim-web-devicons"},
     {"nanotech/jellybeans.vim"},
     {"rafamadriz/neon"},
     {"luochen1990/rainbow"},
