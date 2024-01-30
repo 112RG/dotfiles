@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local lsp_zero = require('lsp-zero')
 lsp_zero.extend_lspconfig()
-require "plugins.cmp"
+--require "plugins.cmp"
 lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions

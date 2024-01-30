@@ -30,6 +30,11 @@ vim.keymap.set('t', '<S-T>', function () vim.cmd('FloatermToggle') end)
 map("n", "<leader>lf", "<cmd>:lua vim.lsp.buf.format()<cr>", {
     noremap = true
 })
+-- ============== Other =======================
+
+map("n","<leader>K","<cmd>:lua vim.lsp.buf.hover()<cr>", {
+   noremap = true
+})
 
 -- ============== Telescope ===================
 
