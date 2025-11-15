@@ -1,0 +1,81 @@
+# Helix theme converted from JOE JSF format
+# Theme: b_c
+
+"keyword.directive" = { fg = "#999999", modifiers = ["dim", "underline"] }
+"comment" = { fg = "#cc3333", modifiers = ["italic"] }
+"special" = "#009999"
+"string" = "#0066cc"
+"keyword" = "#d3d7cf"
+"type" = "#d3d7cf"
+"variable" = "#999999"
+
+# UI elements
+"ui.background" = { bg = "#1e1e1e" }
+"ui.statusline" = { fg = "#d3d7cf", bg = "#2e3436" }
+"ui.statusline.inactive" = { fg = "#888888", bg = "#2e3436" }
+"ui.cursor" = { bg = "#4e9a06", modifiers = ["bold"] }
+"ui.cursor.match" = { bg = "#3465a4" }
+"ui.selection" = { bg = "#3d3d3d" }
+"ui.linenr" = "#cc3333"
+"ui.linenr.selected" = "#d3d7cf"
+"ui.menu" = { bg = "#2e3436" }
+"ui.menu.selected" = { bg = "#3465a4" }
+"ui.popup" = { bg = "#2e3436" }
+"ui.window" = { bg = "#2e3436" }
+"ui.help" = { bg = "#2e3436" }
+
+[palette]
+color0 = "#000000"
+color1 = "#000033"
+color2 = "#000066"
+color3 = "#006633"
+color4 = "#0066cc"
+color5 = "#009933"
+color6 = "#009999"
+color7 = "#0099cc"
+color8 = "#0099ff"
+color9 = "#00cccc"
+color10 = "#00ff66"
+color11 = "#330000"
+color12 = "#3333ff"
+color13 = "#3366ff"
+color14 = "#339933"
+color15 = "#339966"
+color16 = "#3399cc"
+color17 = "#4e9a06"
+color18 = "#660066"
+color19 = "#663333"
+color20 = "#666666"
+color21 = "#669966"
+color22 = "#66cc66"
+color23 = "#66cccc"
+color24 = "#66ff33"
+color25 = "#66ff99"
+color26 = "#993366"
+color27 = "#9933cc"
+color28 = "#9933ff"
+color29 = "#996666"
+color30 = "#999933"
+color31 = "#999999"
+color32 = "#99ccff"
+color33 = "#99ff99"
+color34 = "#c4a000"
+color35 = "#cc0033"
+color36 = "#cc3333"
+color37 = "#cc3366"
+color38 = "#cc3399"
+color39 = "#cc33cc"
+color40 = "#cc33ff"
+color41 = "#cc9900"
+color42 = "#cccc66"
+color43 = "#cccc99"
+color44 = "#ccccff"
+color45 = "#d3d7cf"
+color46 = "#ff0000"
+color47 = "#ff3333"
+color48 = "#ff66ff"
+color49 = "#ffcc66"
+color50 = "#ffcc99"
+color51 = "#ffcccc"
+color52 = "#ffff66"
+color53 = "#ffffff"

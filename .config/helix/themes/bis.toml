@@ -1,0 +1,56 @@
+# Aurora Night - A dark, cool color theme for Helix
+# Author: Your Name
+
+# UI Colors
+"ui.background" = { bg = "#000000" }
+"ui.text"       = { fg = "#c0caf5" }
+"ui.linenr"     = { fg = "#3b4261" }
+"ui.linenr.selected" = { fg = "#7aa2f7" }
+"ui.cursor"     = { fg = "#1a1b26", bg = "#bb9af7" }
+"ui.selection"  = { bg = "#28304a" }
+"ui.statusline" = { fg = "#a9b1d6", bg = "#1f2335" }
+"ui.statusline.inactive" = { fg = "#565f89", bg = "#16161e" }
+"ui.menu"       = { fg = "#c0caf5", bg = "#1f2335" }
+"ui.menu.selected" = { fg = "#1a1b26", bg = "#7aa2f7" }
+"ui.popup"      = { bg = "#1f2335" }
+"ui.help"       = { fg = "#c0caf5", bg = "#1f2335" }
+
+"punctuation.bracket" = { fg = "#2CC55D" }
+"punctuation.delimiter" = { fg = "#2CC55D" }
+# Syntax Highlighting
+"comment"           = { fg = "#D75F5F", modifiers = ["italic"] }
+"keyword"           = { fg = "#FFFFFF" }
+"operator"          = { fg = "#00AFAF" }
+"type"              = { fg = "#FFFFFF" }
+"type.builtin"      = { fg = "#FFFFFF" }
+"function"          = { fg = "#AFAFAF" }
+"function.builtin"  = { fg = "#AFAFAF" }
+"function.macro"    = { fg = "#AFAFAF" }
+"variable"          = { fg = "#AFAFAF" }
+"variable.builtin"  = { fg = "#AFAFAF" }
+"string"            = { fg = "#00AFFF" }
+"number"            = { fg = "#AF5FFF" }
+"boolean"           = { fg = "#f7768e" }
+"constant"          = { fg = "#AF5FFF" }
+"namespace"         = { fg = "#000000" }
+"punctuation"       = { fg = "#2CC55D" }
+"label"             = { fg = "#000000" }
+"attribute"         = { fg = "#000000" }
+
+# Diagnostics
+"info"     = { fg = "#7dcfff" }
+"hint"     = { fg = "#9ece6a" }
+"warning"  = { fg = "#e0af68" }
+"error"    = { fg = "#f7768e" }
+
+[palette]
+black  = "#1a1b26"
+red    = "#f7768e"
+green  = "#9ece6a"
+yellow = "#e0af68"
+blue   = "#7aa2f7"
+magenta= "#bb9af7"
+cyan   = "#7dcfff"
+white  = "#FFFFFF"
+gray   = "#565f89"
+

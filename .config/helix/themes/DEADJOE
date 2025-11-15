@@ -1,0 +1,34 @@
+
+*** These modified files were found in JOE when it aborted on Sat Nov  8 22:32:48 2025
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+gcc -o strings strings.c
+
+*** File '(Unnamed)'
+
+
+*** File '(Unnamed)'
+serial.c
+serial.c
+serial.c
+serial.c
+serial.c
+serial.c
+serial.c
+serial.c
+serial.c
+b.toml
+bis.toml
+bis.toml
+bis.toml
+bis.toml
+bis.toml
+bis.toml
+bis.toml
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
